@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Player from './components/Player';
 import Song from './components/Song';
+import Library from './components/Library';
 import './styles/app.scss';
 import data from './util'
 
@@ -8,8 +9,8 @@ import data from './util'
 
 function App() {
 
- const[song,setSong]  = useState(data());
- const [currentSong, setCurrentSong] = useState(song[0])
+ const[songs,setSong]  = useState(data());
+ const [currentSong, setCurrentSong] = useState(songs[0])
  const [isPlaying, setIsPlaying] = useState(false)
  
 
@@ -18,6 +19,7 @@ function App() {
       <div className='App'>
         <Song currentSong ={currentSong}/>
         <Player currentSong={currentSong} isPlaying={isPlaying} setIsPlaying ={setIsPlaying}/>
+        <Library songs={songs} />
     </div>
   )
 }
