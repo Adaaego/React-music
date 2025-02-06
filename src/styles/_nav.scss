@@ -1,0 +1,17 @@
+.nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    button{
+        display: flex;
+        background: transparent;
+        border: 1px solid rgb(65, 65, 65);
+        padding: 0.5rem;
+        margin-top: 7px;
+    
+        &:hover{
+        background-color: rgb(65, 65, 65);
+        color: #fff;
+    }
+} }

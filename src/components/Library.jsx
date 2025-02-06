@@ -1,7 +1,7 @@
 import LibrarySongs from './LibrarySongs';
 
 
-const Library  = ({songs, setCurrentSong, audioRef}) => {
+const Library  = ({songs, setCurrentSong, audioRef, libraryStatus}) => {
 
     const songSelectHandler = async (song) => {
         await setCurrentSong(song);
@@ -11,10 +11,10 @@ const Library  = ({songs, setCurrentSong, audioRef}) => {
 
 
     return (
-        <div className="library" onClick={songSelectHandler}>
+        <div className={`library ${libraryStatus ? 'active-library' : ''}`} onClick={songSelectHandler}>
             <h2>Library</h2>
             <div className="song-info">
-                {songs.map (song => <LibrarySongs song={song} setCurrentSong={setCurrentSong} audioRef={audioRef}/>)}
+                {songs.map (song => <LibrarySongs song={song} setCurrentSong={setCurrentSong} audioRef={audioRef} id={song.id}/>)}
 
             </div>
         </div>
