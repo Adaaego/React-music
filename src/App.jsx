@@ -47,7 +47,9 @@ const[libraryStatus, setLibraryStatus] = useState(false)
         audioRef={audioRef} 
         timeUpdateHandler={timeUpdateHandler} 
         songInfo ={songInfo} 
-        setSongInfo={setSongInfo}/>
+        setSongInfo={setSongInfo}
+        setCurrentSong={setCurrentSong}
+        songs={songs}/>
 
         <Library songs={songs} 
         setCurrentSong ={setCurrentSong} 
