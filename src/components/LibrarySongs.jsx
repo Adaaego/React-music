@@ -2,32 +2,29 @@
 const LibrarySongs = ({songs, song, setCurrentSong,audioRef, setSongs}) => {
 
     //EVENT HANDLERS
-    const songSelectHandler = async (song) => {
-        await setCurrentSong(song);
-        audioRef.current.play()
+    const songSelectHandler = async (selectedSong) => {
+        await setCurrentSong(selectedSong);
+        
+        //function to update the active status of the current song
+        const updatedSongs = songs.map(s =>  {
+            return{
+                ...s,
+                active : s.id === selectedSong.id
+            }
+        })
+        setSongs(updatedSongs)
+
+        // Play the selected song
+        if (audioRef.current) {
+        audioRef.current.play();
+    }
 
     }
 
-    //function to change the current songs active status 
-    const selectedSong = songs.map(song => {
-        if(song.id === id){
-            return{
-                ...song,
-                active : true
-            }
-        }else{
-            return{
-                ...song,
-                active :false
-            }
-        }
-       
-    }); 
-    setSongs(selectedSong)
 
 
     return(
-    <div className={`library-songs ${song.active ? 'selected': ''}`} onClick={songSelectHandler}>
+    <div className={`library-songs ${song.active ? 'selected': ''}`} onClick={() => songSelectHandler(song)}>
        <img src ={song.cover} alt ={song.name}></img>
 
        <div className='song-description'>
