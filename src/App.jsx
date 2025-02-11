@@ -32,7 +32,7 @@ const[libraryStatus, setLibraryStatus] = useState(false)
       ...songInfo, currentTime : current, duration
   })
 }
- 
+
 
   return (
   
@@ -49,13 +49,15 @@ const[libraryStatus, setLibraryStatus] = useState(false)
         songInfo ={songInfo} 
         setSongInfo={setSongInfo}
         setCurrentSong={setCurrentSong}
-        songs={songs}/>
+        songs={songs}
+        setSongs={setSongs}/>
 
         <Library songs={songs} 
         setCurrentSong ={setCurrentSong} 
         audioRef={audioRef} 
         setSongs ={setSongs}
-        libraryStatus={libraryStatus}/>
+        libraryStatus={libraryStatus}
+        isPlaying={isPlaying}/>
 
         <audio onTimeUpdate={timeUpdateHandler}  onLoadedMetadata={timeUpdateHandler} src={currentSong.audio} ref={audioRef}></audio>
 

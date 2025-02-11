@@ -1,4 +1,4 @@
-import {useRef, useState} from "react";
+import {useRef, useState,useEffect} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faPlay, faPause, faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons';
 
@@ -10,7 +10,8 @@ const Player = ({
     songInfo, 
     setSongInfo, 
     setCurrentSong,
-    songs}) => {
+    songs,
+    setSongs}) => {
 
     
 
@@ -53,6 +54,18 @@ const Player = ({
 
 
 ;
+//useEffect
+
+useEffect (() =>{
+     //function to update the active status of the current song
+     const updatedSongs = songs.map(s =>  {
+        return{
+            ...s,
+            active : s.id === currentSong.id
+        }
+    })
+    setSongs(updatedSongs)
+}, [currentSong])
     
     return(
         <div className="player">
