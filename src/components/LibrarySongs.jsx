@@ -1,13 +1,6 @@
+import { playSong } from "../util";
 
-const LibrarySongs = ({songs, song, setCurrentSong,audioRef, setSongs,isPlaying,}) => {
-
-    //EVENT HANDLERS
-    const songSelectHandler = async (song) => {
-        await setCurrentSong(song);
-        if (isPlaying) {
-            audioRef.current.pause().catch((error) => console.log(error));
-        }
-    };
+const LibrarySongs = ({songs, song, setCurrentSong,audioRef, setSongs,isPlaying, songSelectHandler}) => {
     
 
 

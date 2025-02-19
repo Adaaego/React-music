@@ -1,6 +1,7 @@
 import {useRef, useState,useEffect} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faPlay, faPause, faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons';
+import { playSong } from "../util";
 
 const Player = ({
     currentSong, 
@@ -11,7 +12,8 @@ const Player = ({
     setSongInfo, 
     setCurrentSong,
     songs,
-    setSongs,}) => {
+    setSongs,
+    songSelectHandler}) => {
 
     
 
@@ -32,20 +34,19 @@ const Player = ({
 
     }
 
-    const skipHandler = (direction)=> {
-
-        //find current index 
+    const skipHandler = (direction) => {
         const currentIndex = songs.findIndex(song => song.id === currentSong.id);
-
-        //skip forward
-        if(direction === 'skip-forward'){
-            setCurrentSong(songs[(currentIndex + 1) % songs.length])
-            audioRef.current.play();
-        }else if(direction === 'skip-backward'){
-            setCurrentSong(currentIndex === 0 ? songs[songs.length -1] : songs[currentIndex -1])
+        let nextSong;
+    
+        if (direction === 'skip-forward') {
+            nextSong = songs[(currentIndex + 1) % songs.length];
+        } else if (direction === 'skip-backward') {
+            nextSong = currentIndex === 0 ? songs[songs.length - 1] : songs[currentIndex - 1];
         }
-
-    }
+    
+        songSelectHandler(nextSong); // Use songSelectHandler to change and play the song
+    };
+    
 
      // function to update time
      const getTime = (time) => {

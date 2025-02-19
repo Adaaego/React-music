@@ -34,6 +34,13 @@ const[libraryStatus, setLibraryStatus] = useState(false)
 }
 
 
+    //EVENT HANDLERS
+    const songSelectHandler = async (song) => {
+      await setCurrentSong(song);
+      // play audio
+      playSong(isPlaying, audioRef)
+  };
+
   return (
   
       <div className='App'>
@@ -50,14 +57,16 @@ const[libraryStatus, setLibraryStatus] = useState(false)
         setSongInfo={setSongInfo}
         setCurrentSong={setCurrentSong}
         songs={songs}
-        setSongs={setSongs}/>
+        setSongs={setSongs}
+        songSelectHandler={songSelectHandler}/>
 
         <Library songs={songs} 
         setCurrentSong ={setCurrentSong} 
         audioRef={audioRef} 
         setSongs ={setSongs}
         libraryStatus={libraryStatus}
-        isPlaying={isPlaying}/>
+        isPlaying={isPlaying}
+        songSelectHandler ={songSelectHandler}/>
 
         <audio onTimeUpdate={timeUpdateHandler}  onLoadedMetadata={timeUpdateHandler} src={currentSong.audio} ref={audioRef}></audio>
 
