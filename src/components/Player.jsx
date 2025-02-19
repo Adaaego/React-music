@@ -27,7 +27,7 @@ const Player = ({
     }
 
     const dragHandler = (e) => {
-        audioReference.current.currentTime = e.target.value;
+        audioRef.current.currentTime = e.target.value;
         setSongInfo ({...songInfo, currentTime : e.target.value})
 
     }
@@ -40,6 +40,7 @@ const Player = ({
         //skip forward
         if(direction === 'skip-forward'){
             setCurrentSong(songs[(currentIndex + 1) % songs.length])
+            audioRef.current.play();
         }else if(direction === 'skip-backward'){
             setCurrentSong(currentIndex === 0 ? songs[songs.length -1] : songs[currentIndex -1])
         }

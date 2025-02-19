@@ -4,10 +4,11 @@ const LibrarySongs = ({songs, song, setCurrentSong,audioRef, setSongs,isPlaying,
     //EVENT HANDLERS
     const songSelectHandler = async (song) => {
         await setCurrentSong(song);
-        audioRef.current.play();
+        if (isPlaying) {
+            audioRef.current.pause().catch((error) => console.log(error));
+        }
+    };
     
-
-    }
 
 
 
