@@ -37,7 +37,7 @@ const Player = ({
     const skipHandler = async (direction)=> {
 
         //find current index 
-        const currentIndex = songs.findIndex(song => song.id === currentSong.id);
+        let currentIndex = songs.findIndex(song => song.id === currentSong.id);
 
         //skip forward
         if(direction === 'skip-forward'){
