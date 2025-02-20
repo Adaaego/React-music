@@ -13,7 +13,7 @@ const Player = ({
     setCurrentSong,
     songs,
     setSongs,
-    songSelectHandler}) => {
+    }) => {
 
     
 
@@ -34,18 +34,22 @@ const Player = ({
 
     }
 
-    const skipHandler = (direction) => {
+    const skipHandler = async (direction)=> {
+
+        //find current index 
         const currentIndex = songs.findIndex(song => song.id === currentSong.id);
-        let nextSong;
-    
-        if (direction === 'skip-forward') {
-            nextSong = songs[(currentIndex + 1) % songs.length];
-        } else if (direction === 'skip-backward') {
-            nextSong = currentIndex === 0 ? songs[songs.length - 1] : songs[currentIndex - 1];
+
+        //skip forward
+        if(direction === 'skip-forward'){
+            await setCurrentSong(songs[(currentIndex + 1) % songs.length])
+        }else if(direction === 'skip-backward'){
+            await setCurrentSong(currentIndex === 0 ? songs[songs.length -1] : songs[currentIndex -1]);
         }
-    
-        songSelectHandler(nextSong); // Use songSelectHandler to change and play the song
-    };
+
+            if (isPlaying) audioRef.current.play();
+
+
+    }
     
 
      // function to update time
