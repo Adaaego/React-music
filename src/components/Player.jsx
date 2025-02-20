@@ -69,14 +69,30 @@ useEffect (() =>{
     })
     setSongs(updatedSongs)
 }, [currentSong])
+
+// Function to update the translateX transform based on animationPercentage
+const trackAnimation = {
+    transform: `translateX(${songInfo.animationPercentage}%)`
+  };
     
     return(
         <div className="player">
           
                 <div className="time-control">
                 <p>{getTime(songInfo.currentTime)}</p>
-                <input type="range" onChange={dragHandler} min ={0} max={songInfo.duration || 0} value={songInfo.currentTime}></input>
-                <p>{getTime(songInfo.duration)}</p>
+                <div className='track' style={{background :`linear-gradient(to right,  ${currentSong.color[0]}, ${currentSong.color[1]})`}}>
+                <input
+                type='range'
+                min={0}
+                max={songInfo.duration || 0}
+                value={songInfo.currentTime}
+                onChange={dragHandler} ></input>
+                <div className='animate-track'  style={trackAnimation}></div> 
+
+                </div>
+ 
+                
+                <p>{songInfo.duration ? getTime(songInfo.duration) : '0:00'}</p>
                 </div>
                 
                 <div className="play-control">
@@ -90,3 +106,5 @@ useEffect (() =>{
 }
 
 export default Player;
+
+
