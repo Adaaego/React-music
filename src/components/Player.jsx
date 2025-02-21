@@ -1,4 +1,4 @@
-import {useRef, useState,useEffect} from "react";
+import {useRef, useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faPlay, faPause, faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons';
 import { playSong } from "../util";
@@ -13,6 +13,7 @@ const Player = ({
     setCurrentSong,
     songs,
     setSongs,
+    activeSongHandler
     }) => {
 
     
@@ -41,9 +42,11 @@ const Player = ({
 
         //skip forward
         if(direction === 'skip-forward'){
-            await setCurrentSong(songs[(currentIndex + 1) % songs.length])
+            await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+            activeSongHandler(songs[(currentIndex + 1) % songs.length])
         }else if(direction === 'skip-backward'){
             await setCurrentSong(currentIndex === 0 ? songs[songs.length -1] : songs[currentIndex -1]);
+            activeSongHandler(currentIndex === 0 ? songs[songs.length -1] : songs[currentIndex -1])
         }
 
             if (isPlaying) audioRef.current.play();
@@ -61,18 +64,7 @@ const Player = ({
 
 
 ;
-//useEffect
 
-useEffect (() =>{
-     //function to update the active status of the current song
-     const updatedSongs = songs.map(s =>  {
-        return{
-            ...s,
-            active : s.id === currentSong.id
-        }
-    })
-    setSongs(updatedSongs)
-}, [currentSong])
 
 // Function to update the translateX transform based on animationPercentage
 const trackAnimation = {

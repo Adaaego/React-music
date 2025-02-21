@@ -39,6 +39,17 @@ const[libraryStatus, setLibraryStatus] = useState(false)
 
   setSongInfo({currentTime : current, duration : duration, animationPercentage: animationPercentage});
 }
+//FUNCTION TO UPDATE THE ACTIVE STATUS OF SONGS
+const activeSongHandler = (nexPrev) =>{
+  const updatedSongs = songs.map(s =>  {
+      return{
+          ...s,
+          active : s.id === nexPrev.id
+      }
+  })
+  setSongs(updatedSongs)
+
+}
 
 const songEndHandler = async () =>{
   let currentIndex = songs.findIndex(song => song.id === currentSong.id);
@@ -66,6 +77,7 @@ const songEndHandler = async () =>{
         setCurrentSong={setCurrentSong}
         songs={songs}
         setSongs={setSongs}
+        activeSongHandler={activeSongHandler}
        />
 
         <Library songs={songs} 
@@ -74,6 +86,7 @@ const songEndHandler = async () =>{
         setSongs ={setSongs}
         libraryStatus={libraryStatus}
         isPlaying={isPlaying}
+        activeSongHandler={activeSongHandler}
         />
 
         <audio onTimeUpdate={timeUpdateHandler}  

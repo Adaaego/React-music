@@ -1,10 +1,11 @@
 import { playSong } from "../util";
 
-const LibrarySongs = ({songs, song, setCurrentSong,audioRef, setSongs,isPlaying, }) => {
+const LibrarySongs = ({songs, song, setCurrentSong,audioRef, setSongs,isPlaying, activeSongHandler}) => {
 
      //EVENT HANDLERS
      const songSelectHandler = async (song) => {
         await setCurrentSong(song);
+        activeSongHandler(song)
         if (isPlaying) {
             audioRef.current.play().catch((error) => console.log(error));
         }

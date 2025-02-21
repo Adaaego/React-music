@@ -2,7 +2,7 @@ import LibrarySongs from './LibrarySongs';
 import { playSong } from "../util";
 
 
-const Library  = ({songs, setCurrentSong, audioRef, libraryStatus, isPlaying}) => {
+const Library  = ({songs, setCurrentSong, audioRef, libraryStatus, isPlaying, activeSongHandler}) => {
 
   
 
@@ -15,6 +15,7 @@ const Library  = ({songs, setCurrentSong, audioRef, libraryStatus, isPlaying}) =
                 audioRef={audioRef} 
                 id={song.id}
                 isPlaying={isPlaying}
+                activeSongHandler={activeSongHandler}
                 />)}
 
             </div>
